@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace GameLoops
 {
@@ -15,27 +16,22 @@ namespace GameLoops
         static string s;
         static void Main(string[] args)
         {
+            Console.WriteLine("GameLoops.");
+            Console.WriteLine();
             InitializeVariables();
             while (gameOver == false)
             {
-                ShowHud();
                 PlayerUpdate();
                 PlayerDraw(s, x, y);
-
+                Thread.Sleep(2000);
+                Console.Clear();                
+                PlayerDraw(s, x, y);
             }
             Console.WriteLine();
             Console.WriteLine("The Game is now Over.");
             Console.ReadKey();
 
-        }
-        static void ShowHud()
-        {
-            Console.WriteLine("GameLoops");
-            Console.WriteLine();            
-            Console.ReadKey(true);
-            Console.WriteLine();
-
-        }
+        }        
         static void PlayerUpdate()
         {            
             Console.WriteLine();
@@ -48,7 +44,7 @@ namespace GameLoops
             }
             else if (key.Key == ConsoleKey.W)
             {
-                y++;
+                y--;
             }
             else if (key.Key == ConsoleKey.A)
             {
@@ -56,7 +52,7 @@ namespace GameLoops
             }
             else if (key.Key == ConsoleKey.S)
             {
-                y--;
+                y++;
             }
             else if (key.Key == ConsoleKey.D)
             {
@@ -74,8 +70,8 @@ namespace GameLoops
             gameOver = false;
             x = 0;
             y = 0;
-            origx = 0;
-            origy = 0;
+            origx = 10;
+            origy = 10;
             s = "#";
         }
     }
