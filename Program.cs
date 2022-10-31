@@ -34,7 +34,7 @@ namespace GameLoops
             Console.WriteLine();
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
             Console.ReadKey();
-            if (Key = ConsoleKey.Escape)
+            if (Console.ReadKey().Key = ConsoleKey.Escape)
             {
                 gameOver = true;
             }
