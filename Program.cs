@@ -8,61 +8,75 @@ namespace GameLoops
 {
     internal class Program
     {
-        static bool gameOver = false;
-        static int x, y;        
+        static bool gameOver;
+        static int x, y;
+        static int origx, origy;
+        static ConsoleKeyInfo key;
+        static string s;
         static void Main(string[] args)
         {
+            InitializeVariables();
             while (gameOver == false)
             {
                 ShowHud();
-                PlayerChoice();
+                PlayerUpdate();
+                PlayerDraw(s, x, y);
 
             }
+            Console.WriteLine();
+            Console.WriteLine("The Game is now Over.");
+            Console.ReadKey();
 
         }
         static void ShowHud()
         {
             Console.WriteLine("GameLoops");
-            Console.WriteLine();
-            PlayerChoice();
+            Console.WriteLine();            
             Console.ReadKey(true);
             Console.WriteLine();
 
         }
-        static void PlayerChoice()
+        static void PlayerUpdate()
         {            
             Console.WriteLine();
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
-            Console.ReadKey();
-            if (Console.ReadKey().Key = ConsoleKey.Escape)
+            
+            key = Console.ReadKey();
+            if (key.Key == ConsoleKey.Escape)
             {
                 gameOver = true;
             }
-            else if (cki = ConsoleKey.W)
+            else if (key.Key == ConsoleKey.W)
             {
-
+                y++;
             }
-            else if (cki = ConsoleKey.A)
+            else if (key.Key == ConsoleKey.A)
             {
-
+                x--;
             }
-            else if (cki = ConsoleKey.S)
+            else if (key.Key == ConsoleKey.S)
             {
-
+                y--;
             }
-            else if (cki = ConsoleKey.D)
+            else if (key.Key == ConsoleKey.D)
             {
-
-            }
+                x++;
+            }            
 
         }
-        static void PlayerDraw(int x, int y)
+        static void PlayerDraw(string s, int x, int y)
         {
-
-        }
-        static void PlayerUpdate()
+            Console.SetCursorPosition(origx + x,origy + y);
+            Console.Write(s);
+        }        
+        static void InitializeVariables()
         {
-
+            gameOver = false;
+            x = 0;
+            y = 0;
+            origx = 0;
+            origy = 0;
+            s = "#";
         }
     }
 }
